@@ -40,7 +40,7 @@ class Program
         Console.WriteLine();
         Console.WriteLine($"2. {verses[1]}");
         Console.WriteLine();
-        Console.WriteLine($"2. {verses[2]}");
+        Console.WriteLine($"3. {verses[2]}");
 
         //This reads what scripture they want to do.
         Console.WriteLine("What Scripture do you want to work on?");
@@ -60,19 +60,21 @@ class Program
             Reference r = new Reference();
             r.setReference(reference);
 
-            Scripture s = new Scripture();
-            s.setText(text);
+            Scripture s = new Scripture(text);
 
             //Just a test // Just a test // just a test// just a test
-            // string refer = r.getReference();
-            // Console.WriteLine(refer);
-            // List<string> tex = s.getText();
-            // foreach (string t in tex)
-            // {
-            //     Console.Write($"{t} ");
-            // }
+            Console.Clear();
+            string refer = r.getReference();
+            Console.WriteLine(refer);
+            List<string> tex = s.getText();
+            foreach (string t in tex)
+            {
+                Console.Write($"{t} ");
+            }
+            Console.WriteLine();
+            Console.WriteLine();
         }
-
+        //Verse Moroni 10:4-5
         else if (verse == "2")
         {
             //Breaks the verse into a reference variable and a text variable
@@ -86,19 +88,21 @@ class Program
             r.setReference(reference);
 
             //This calls the methods to set the Scripture attributes
-            Scripture s = new Scripture();
-            s.setText(text);
+            Scripture s = new Scripture(text);
+
 
             //Just a test // Just a test // just a test// just a test
-            // string refer = r.getReference();
-            // Console.WriteLine(refer);
-            // List<string> tex = s.getText();
-            // foreach (string t in tex)
-            // {
-            //     Console.Write($"{t} ");
-            // }
+            string refer = r.getReference();
+            Console.WriteLine(refer);
+            List<string> tex = s.getText();
+            foreach (string t in tex)
+            {
+                Console.Write($"{t} ");
+            }
+            Console.WriteLine();
+            Console.WriteLine();
         }
-
+        //Verse 3 Nephi
         else if (verse == "3")
         {
             //Breaks the verse into a reference variable and a text variable
@@ -112,76 +116,26 @@ class Program
             r.setReference(reference);
 
             //This calls the methods to set the Scripture attributes
-            Scripture s = new Scripture();
-            s.setText(text);
+            Scripture s = new Scripture(text);
+
 
             //Just a test // Just a test // just a test// just a test
-            // string refer = r.getReference();
-            // Console.WriteLine(refer);
-            // List<string> tex = s.getText();
-            // foreach (string t in tex)
-            // {
-            //     Console.Write($"{t} ");
-            // }
+            Console.Clear();
+            string refer = r.getReference();
+            Console.WriteLine(refer);
+            List<string> tex = s.getText();
+            foreach (string t in tex)
+            {
+                Console.Write($"{t} ");
+            }
+            Console.WriteLine();
+            Console.WriteLine();
         }
+        //If the user chooses a choice that isn't available
         else
         {
             Console.WriteLine("Please Choose a given numbered option.");
         }
 
-
-    }
-}
-
-class Scripture
-{
-    private List<string> _text;
-
-    public Scripture()
-    {
-        _text = new List<string>();
-    }
-
-    public void setText(string text)
-    {
-        char[] delimiters = new char[] { ' ', '\n', '\r' };
-        string[] words = text.Split(delimiters, StringSplitOptions.RemoveEmptyEntries);
-        foreach (string word in words)
-        {
-            _text.Add(word);
-        }
-
-    }
-
-    public List<string> getText()
-    {
-        return _text;
-    }
-}
-
-class Words
-{
-
-}
-
-class Reference
-{
-    private string _referenceBook;
-    private string _referenceChapter;
-    private string _referenceVerses;
-
-    public void setReference(string reference)
-    {
-        string[] parts = reference.Split(" ");
-        string[] moreParts = parts[1].Split(":");
-        _referenceBook = parts[0];
-        _referenceChapter = moreParts[0];
-        _referenceVerses = moreParts[1];
-    }
-
-    public string getReference()
-    {
-        string reference = $"{_referenceBook} {_referenceChapter}:{_referenceVerses} ~";
-        return reference;
     }
 }
