@@ -1,5 +1,4 @@
 using System;
-using System.Globalization;
 using System.Linq;
 
 class Program
@@ -62,17 +61,31 @@ class Program
 
             Scripture s = new Scripture(text);
 
-            //Just a test // Just a test // just a test// just a test
+            //This is the start of the code that makes the loop to hide the scripture
+            string userInput = " ";
             Console.Clear();
             string refer = r.getReference();
             Console.WriteLine(refer);
-            List<string> tex = s.getText();
-            foreach (string t in tex)
+            List<string> tx = s.getText();
+            foreach (string t in tx)
             {
                 Console.Write($"{t} ");
             }
-            Console.WriteLine();
-            Console.WriteLine();
+            userInput = Console.ReadLine();
+            while (!s.isCompletlyHidden() && userInput != "quit")
+            {
+                s.setRandomWords();
+                Console.Clear();
+                refer = r.getReference();
+                Console.WriteLine(refer);
+                tx = s.getText();
+                foreach (string t in tx)
+                {
+                    Console.Write($"{t} ");
+                }
+                userInput = Console.ReadLine();
+
+            }
         }
         //Verse Moroni 10:4-5
         else if (verse == "2")
@@ -90,17 +103,31 @@ class Program
             //This calls the methods to set the Scripture attributes
             Scripture s = new Scripture(text);
 
-
-            //Just a test // Just a test // just a test// just a test
+            //This is the start of the code that makes the loop to hide the scripture
+            string userInput = " ";
+            Console.Clear();
             string refer = r.getReference();
             Console.WriteLine(refer);
-            List<string> tex = s.getText();
-            foreach (string t in tex)
+            List<string> tx = s.getText();
+            foreach (string t in tx)
             {
                 Console.Write($"{t} ");
             }
-            Console.WriteLine();
-            Console.WriteLine();
+            userInput = Console.ReadLine();
+            while (!s.isCompletlyHidden() && userInput != "quit")
+            {
+                s.setRandomWords();
+                Console.Clear();
+                refer = r.getReference();
+                Console.WriteLine(refer);
+                tx = s.getText();
+                foreach (string t in tx)
+                {
+                    Console.Write($"{t} ");
+                }
+                userInput = Console.ReadLine();
+
+            }
         }
         //Verse 3 Nephi
         else if (verse == "3")
@@ -118,24 +145,56 @@ class Program
             //This calls the methods to set the Scripture attributes
             Scripture s = new Scripture(text);
 
-
-            //Just a test // Just a test // just a test// just a test
+            //This is the start of the code that makes the loop to hide the scripture
+            string userInput = " ";
             Console.Clear();
             string refer = r.getReference();
             Console.WriteLine(refer);
-            List<string> tex = s.getText();
-            foreach (string t in tex)
+            List<string> tx = s.getText();
+            foreach (string t in tx)
             {
                 Console.Write($"{t} ");
             }
-            Console.WriteLine();
-            Console.WriteLine();
+            userInput = Console.ReadLine();
+            while (!s.isCompletlyHidden() && userInput != "quit")
+            {
+                s.setRandomWords();
+                Console.Clear();
+                refer = r.getReference();
+                Console.WriteLine(refer);
+                tx = s.getText();
+                foreach (string t in tx)
+                {
+                    Console.Write($"{t} ");
+                }
+                userInput = Console.ReadLine();
+
+            }
         }
         //If the user chooses a choice that isn't available
         else
         {
-            Console.WriteLine("Please Choose a given numbered option.");
+            Console.WriteLine("You did not Choose a given numbered option.");
         }
+        while (true)
+        {
 
+            Console.Write("Play again? (y/n) ");
+            string input = Console.ReadLine();
+            if (input == "y")
+            {
+                Main([]);
+                break;
+            }
+            else if (input == "n")
+            {
+                Console.WriteLine("Go Forth and Prosper in the Promised Land!");
+                break;
+            }
+            else
+            {
+                Console.WriteLine("Please choose y or n.");
+            }
+        }
     }
 }

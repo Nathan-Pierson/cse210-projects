@@ -1,11 +1,13 @@
 class Scripture
 {
-    private List<Word> _words = new List<Word>();
-    private static Random _random = new Random();
+    private List<Word> _words;
+    private static Random _random;
 
     //This constructor sets the _words 
     public Scripture(string text)
     {
+        _words = new List<Word>();
+        _random = new Random();
         string[] words = text.Split(" ", StringSplitOptions.RemoveEmptyEntries);
         foreach (string word in words)
         {
@@ -35,9 +37,8 @@ class Scripture
             else
             {
                 int randomIndex = _random.Next(0, text.Count);
-
                 Word t = text[randomIndex];
-
+                randomWords.Add(t);
                 t.hide();
             }
     }
@@ -53,5 +54,17 @@ class Scripture
         }
 
         return finalScripture;
+    }
+
+    public bool isCompletlyHidden()
+    {
+        foreach (Word wordObject in _words)
+        {
+            if (wordObject.getVisible())
+            {
+                return false;
+            }
+        }
+        return true;
     }
 }
