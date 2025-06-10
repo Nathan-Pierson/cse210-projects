@@ -1,13 +1,13 @@
 class ListingActivity : Activity
 {
-    private List<string> _prompts;
+    private string _prompt;
     private List<string> _items;
 
 
-    public ListingActivity(string name, string description, int duration, List<string> prompts, List<string> items) : base(name, description, duration)
+    public ListingActivity(string name, string description, int duration) : base(name, description, duration)
     {
-        _prompts = prompts;
-        _items = items;
+        string randomPrompt = GetRandomPrompt();
+        _prompt = randomPrompt;
     }
 
 
@@ -19,5 +19,58 @@ class ListingActivity : Activity
     public void Run()
     {
 
+    }
+
+
+    /// <summary>
+    /// This is a list of a bunch of random prompts that can be 
+    /// given to the user.
+    /// </summary>
+    public static List<string> Prompts = new List<string>
+    {
+        "Who are people that you appreciate?",
+        "What are personal strengths of yours?",
+        "Who are people that you have helped this week?",
+        "When have you felt the Holy Ghost this month?",
+        "Who are some of your personal heroes?",
+        "What are moments you felt proud of yourself?",
+        "Who has made a positive impact on your life?",
+        "What are things you're grateful for today?",
+        "When have you felt God's love recently?",
+        "What are talents you've been blessed with?",
+        "Who are people you look up to and why?",
+        "What are acts of service you've witnessed?",
+        "When have you felt peace in your heart?",
+        "What are lessons you've learned from challenges?",
+        "Who are family members you're grateful for?",
+        "What are ways you've grown this year?",
+        "When have you felt guided by inspiration?",
+        "What are things that bring you joy?",
+        "Who are friends that lift you up?",
+        "What are moments when you felt God's hand in your life?",
+        "What are ways you've been a good example?",
+        "Who are people you've forgiven?",
+        "What are prayers that have been answered?",
+        "When have you felt the Spirit testify of truth?",
+        "What are ways you've served others?",
+        "Who are teachers that have influenced you?",
+        "What are scriptures that have comforted you?",
+        "When have you felt hope during difficult times?",
+        "What are ways you've shown kindness?",
+        "Who are people you want to be more like?"
+    };
+
+
+    /// <summary>
+    /// This is a quick method that returns a random prompt that 
+    /// is saved to the attribute of the class. The prompt will then be
+    /// used later in the program.
+    /// </summary>
+    /// <returns> string </returns>
+    public string GetRandomPrompt()
+    {
+        Random random = new Random();
+        int i = random.Next(Prompts.Count);
+        return Prompts[i];
     }
 }

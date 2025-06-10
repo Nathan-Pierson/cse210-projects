@@ -4,6 +4,7 @@ class BreathingActivity : Activity
     private int _outDuration;
 
 
+    
     public BreathingActivity(string name, string description, int duration) : base(name, description, duration)
     {
         int numberOfTimes = duration / 2; //A given amount of how many times they will breath in and breath out.

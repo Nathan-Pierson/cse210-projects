@@ -36,22 +36,38 @@ class Activity
     /// <summary>
     /// This is a method that will create a countdown for the user to follow.
     /// </summary>
-    /// <returns> string </returns>
-    public string CountDown()
+    public void CountDown(string text)
     {
-        string count = "";
-        return count;
+        Console.Clear();
+        int i = 5;
+        while (i != -1)
+        {
+            Console.Write($"\r{text} {i}");
+            Thread.Sleep(1000);
+            i -= 1;
+        }
+        
+
     }
 
 
     /// <summary>
     /// This is a method that will create a spinner
     /// </summary>
-    /// <returns> string</returns>
-    public string Spinner()
+    public void Spinner()
     {
-        string spin = "";
-        return spin;
+        Console.Clear();
+        List<string> spinner = new List<string>{"|","/","-","\\",};
+
+        for (int i = 0; i != 5; i++)
+        {
+            foreach (string s in spinner)
+            {
+                Console.Write($"\r{s}");
+                Thread.Sleep(500);
+            }
+        }
+
     }
 
 }
