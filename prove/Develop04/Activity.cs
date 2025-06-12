@@ -36,17 +36,17 @@ class Activity
     /// <summary>
     /// This is a method that will create a countdown for the user to follow.
     /// </summary>
-    public void CountDown(string text)
+    public void CountDown(string text, int count)
     {
         Console.Clear();
-        int i = 5;
-        while (i != -1)
+        int i = count;
+        while (i != 0)
         {
             Console.Write($"\r{text} {i}");
             Thread.Sleep(1000);
             i -= 1;
         }
-        
+
 
     }
 
@@ -54,12 +54,12 @@ class Activity
     /// <summary>
     /// This is a method that will create a spinner
     /// </summary>
-    public void Spinner()
+    public void Spinner(int count)
     {
         Console.Clear();
-        List<string> spinner = new List<string>{"|","/","-","\\",};
+        List<string> spinner = new List<string> { "|", "/", "-", "\\", };
 
-        for (int i = 0; i != 5; i++)
+        for (int i = count; i != 5; i++)
         {
             foreach (string s in spinner)
             {
@@ -68,6 +68,15 @@ class Activity
             }
         }
 
+    }
+
+
+    public void EndMessage()
+    {
+        Console.WriteLine("Well Done!");
+        Spinner(5);
+        Console.WriteLine($"You have successfully completed another {_duration} of the {_name}!");
+        Spinner(5);
     }
 
 }

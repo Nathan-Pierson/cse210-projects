@@ -1,32 +1,10 @@
+using System.Globalization;
+
 class ListingActivity : Activity
 {
     private string _prompt;
     private List<string> _items;
-
-
-    public ListingActivity(string name, string description, int duration) : base(name, description, duration)
-    {
-        string randomPrompt = GetRandomPrompt();
-        _prompt = randomPrompt;
-    }
-
-
-    /// <summary>
-    /// This method will run the entire listing activity.
-    /// It will print everything to the console that is required for
-    /// the user to follow along with the listing exercises. 
-    /// </summary>
-    public void Run()
-    {
-
-    }
-
-
-    /// <summary>
-    /// This is a list of a bunch of random prompts that can be 
-    /// given to the user.
-    /// </summary>
-    public static List<string> Prompts = new List<string>
+    private List<string> _prompts = new List<string>
     {
         "Who are people that you appreciate?",
         "What are personal strengths of yours?",
@@ -62,6 +40,50 @@ class ListingActivity : Activity
 
 
     /// <summary>
+    /// This is the constructor for the Listing Activity.
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="description"></param>
+    /// <param name="duration"></param>
+    public ListingActivity(string name, string description, int duration) : base(name, description, duration)
+    {
+        string randomPrompt = GetRandomPrompt();
+        _prompt = randomPrompt;
+        _items = new List<string>();
+    }
+
+
+    /// <summary>
+    /// This method will run the entire listing activity.
+    /// It will print everything to the console that is required for
+    /// the user to follow along with the listing exercises. 
+    /// </summary>
+    public void Run()
+    {
+        Console.Clear();
+        Console.WriteLine($"Welcome to the {GetName()}!\n{GetDescription()}\nYou will have 10 seconds to think and then {GetDuration()} seconds to list everything you can think of.");
+        Thread.Sleep(15000);
+        CountDown(_prompt, 10);
+
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(GetDuration());
+        DateTime currentTime = DateTime.Now;
+
+        while (currentTime < futureTime)
+        {
+            Console.Clear();
+            Console.WriteLine(_prompt);
+            Console.Write(">>> ");
+            string item = Console.ReadLine();
+            _items.Add(item);
+            currentTime = DateTime.Now;
+        }
+
+        
+        
+    }
+
+    /// <summary>
     /// This is a quick method that returns a random prompt that 
     /// is saved to the attribute of the class. The prompt will then be
     /// used later in the program.
@@ -70,7 +92,7 @@ class ListingActivity : Activity
     public string GetRandomPrompt()
     {
         Random random = new Random();
-        int i = random.Next(Prompts.Count);
-        return Prompts[i];
+        int i = random.Next(_prompts.Count);
+        return _prompts[i];
     }
 }
