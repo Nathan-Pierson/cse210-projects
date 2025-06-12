@@ -27,8 +27,10 @@ class BreathingActivity : Activity
     public void Run()
     {
         Console.Clear();
-        Console.WriteLine($"Welcome to the {GetName()}!\n{GetDescription()}\nYou will complete this activity for {GetDuration()} seconds.");
-        Thread.Sleep(10000);
+        Console.WriteLine($"Welcome to the {GetName()}!");
+        Console.WriteLine($"{GetDescription()}");
+        Console.WriteLine($"You will complete this activity for {GetDuration()} seconds.");
+        Spinner();
         CountDown("Begin Breathing Activity in", 5);
         while (_inDuration != 0 && _outDuration != 0)
         {

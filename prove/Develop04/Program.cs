@@ -56,11 +56,12 @@ class Program
 
     public static void Menu()
     {
+        Console.Clear();
         Console.WriteLine("Here are some Helpful Activity Options!\n");
         Console.WriteLine("1. Breathing Activity");
         Console.WriteLine("2. Listing Activity");
         Console.WriteLine("3. Reflection Activity");
         Console.WriteLine("4. Quit");
-        Console.Write("Please pick an option (1-3) >>> ");
+        Console.Write("Please pick an option (1-4) >>> ");
     }
 }

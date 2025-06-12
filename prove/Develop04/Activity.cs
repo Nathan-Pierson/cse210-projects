@@ -46,37 +46,37 @@ class Activity
             Thread.Sleep(1000);
             i -= 1;
         }
-
-
     }
 
 
     /// <summary>
     /// This is a method that will create a spinner
     /// </summary>
-    public void Spinner(int count)
+    public void Spinner()
     {
-        Console.Clear();
-        List<string> spinner = new List<string> { "|", "/", "-", "\\", };
+        List<string> spinner = new List<string> { "|", "/", "-", "\\" };
 
-        for (int i = count; i != 5; i++)
+        for (int i = 0; i < 5; i++)
         {
             foreach (string s in spinner)
             {
                 Console.Write($"\r{s}");
-                Thread.Sleep(500);
+                Thread.Sleep(250);
             }
         }
+        Console.Write("\r");
 
     }
 
 
     public void EndMessage()
     {
+        Console.Clear();
         Console.WriteLine("Well Done!");
-        Spinner(5);
-        Console.WriteLine($"You have successfully completed another {_duration} of the {_name}!");
-        Spinner(5);
+        Spinner();
+        Console.WriteLine();
+        Console.WriteLine($"You have successfully completed another {_duration} seconds of the {_name}!");
+        Spinner();
     }
 
 }
