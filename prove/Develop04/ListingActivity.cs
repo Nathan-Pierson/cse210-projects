@@ -74,9 +74,9 @@ class ListingActivity : Activity
         //Prompt for the user to see at the top of the console
         Console.Clear();
         Console.WriteLine("Get Ready...");
-        Spinner();
+        Spinner(6);
         Console.WriteLine(_prompt);
-        CountDown("You may begin in: ", 10);
+        CountDown("You may begin in: ", 5);
         Console.WriteLine();
 
         //Required variables for the activity while loop.

@@ -77,7 +77,42 @@ class ReflectionActivity : Activity
     /// </summary>
     public void Run()
     {
+        //Reads the activity description to the console.
+        Console.Clear();
+        Console.WriteLine($"Welcome to the {GetName()}!");
+        Console.WriteLine($"{GetDescription()}");
 
+        //Gets the Duration for the activity
+        Console.Write("How long, in seconds, would you like this session to be? ");
+        string duration = Console.ReadLine();
+        int durationInt = int.Parse(duration);
+        SetDuration(durationInt);
+
+        //Thinking on the prompt
+        Console.WriteLine("Consider the following prompt:");
+        Console.WriteLine($"---{_prompt}---");
+        Console.Write("When you have had sufficient time to ponder hit enter.");
+        Console.ReadLine();
+
+        //The follow up question that they should ponder on
+        Console.WriteLine("Ponder on each of these following questions and how they related to this experience.");
+        CountDown("You may begin in: ", 5);
+        Console.Clear();
+
+        //Required variables for the activity while loop.
+        DateTime startTime = DateTime.Now;
+        DateTime futureTime = startTime.AddSeconds(GetDuration());
+        DateTime currentTime = DateTime.Now;
+
+        //While loop that will keep giving pondering question until the duration is over.
+        while (currentTime < futureTime)
+        {
+            Console.WriteLine($">{_question}");
+            Spinner(10);
+            string anotherQuestion = GetRandomQuestion();
+            _question = anotherQuestion;
+            currentTime = DateTime.Now;
+        }
     }
 
 

@@ -50,7 +50,7 @@ class BreathingActivity : Activity
         Console.WriteLine($"You will complete this activity for {GetDuration()} seconds.");
         Console.Clear();
         Console.WriteLine("Get ready... ");
-        Spinner();
+        Spinner(6);
 
         //This is the main loop of the activity that helps you breath in and out.
         while (_inDuration != 0 && _outDuration != 0)

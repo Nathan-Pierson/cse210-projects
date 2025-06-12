@@ -57,11 +57,11 @@ class Activity
     /// <summary>
     /// This is a method that will create a spinner
     /// </summary>
-    public void Spinner()
+    public void Spinner(int count)
     {
         List<string> spinner = new List<string> { "|", "/", "-", "\\" };
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < count; i++)
         {
             foreach (string s in spinner)
             {
@@ -78,10 +78,10 @@ class Activity
     {
         Console.WriteLine();
         Console.WriteLine("Well Done!");
-        Spinner();
+        Spinner(5);
         Console.WriteLine();
         Console.WriteLine($"You have successfully completed another {_duration} seconds of the {_name}!");
-        Spinner();
+        Spinner(5);
     }
 
 }
