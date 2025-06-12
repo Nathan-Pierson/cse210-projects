@@ -20,29 +20,20 @@ class Program
             switch (choiceInt)
             {
                 case 1: //Breathing Activity
-                    Console.Write("How long, in seconds, would you like this session to be? ");
-                    string duration = Console.ReadLine();
-                    int durationInt = int.Parse(duration);
                     string description = "This activity will help you relax by guiding you through breathing in and out slowly. Drown out all distractions and focus on your breathing.";
-                    BreathingActivity b = new BreathingActivity("Breathing Activity", description, durationInt);
+                    BreathingActivity b = new BreathingActivity("Breathing Activity", description);
                     b.Run();
                     b.EndMessage();
                     break;
                 case 2: //Listing Activity
-                    Console.Write("How long, in seconds, would you like this session to be? ");
-                    duration = Console.ReadLine();
-                    durationInt = int.Parse(duration);
                     description = "This activity will help you reflect on the many wonderful things in your life by having you list as many things as you can about a certain topic.";
-                    ListingActivity l = new ListingActivity("Listing Activity", description, durationInt);
+                    ListingActivity l = new ListingActivity("Listing Activity", description);
                     l.Run();
                     l.EndMessage();
                     break;
                 case 3: //Reflection Activity
-                    Console.Write("How long, in seconds, would you like this session to be? ");
-                    duration = Console.ReadLine();
-                    durationInt = int.Parse(duration);
                     description = "This activity will help you reflect on times in your life when you have overcome trials. It will help you better recognize your strength and how you can use it in more aspects of your life.";
-                    ReflectionActivity r = new ReflectionActivity("Reflection Activity", description, durationInt);
+                    ReflectionActivity r = new ReflectionActivity("Reflection Activity", description);
                     r.Run();
                     r.EndMessage();
                     break;

@@ -61,7 +61,7 @@ class ReflectionActivity : Activity
     };
 
 
-    public ReflectionActivity(string name, string description, int duration) : base(name, description, duration)
+    public ReflectionActivity(string name, string description) : base(name, description)
     {
         string prompt = GetRandomPrompt();
         string question = GetRandomQuestion();

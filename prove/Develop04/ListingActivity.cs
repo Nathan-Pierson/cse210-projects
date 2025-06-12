@@ -45,7 +45,7 @@ class ListingActivity : Activity
     /// <param name="name"></param>
     /// <param name="description"></param>
     /// <param name="duration"></param>
-    public ListingActivity(string name, string description, int duration) : base(name, description, duration)
+    public ListingActivity(string name, string description) : base(name, description)
     {
         string randomPrompt = GetRandomPrompt();
         _prompt = randomPrompt;
@@ -60,27 +60,42 @@ class ListingActivity : Activity
     /// </summary>
     public void Run()
     {
+        //Reads the activity description to the console.
         Console.Clear();
-        Console.WriteLine($"Welcome to the {GetName()}!\n{GetDescription()}\nYou will have 10 seconds to think and then {GetDuration()} seconds to list everything you can think of.");
-        Thread.Sleep(15000);
-        CountDown(_prompt, 10);
+        Console.WriteLine($"Welcome to the {GetName()}!");
+        Console.WriteLine($"{GetDescription()}");
 
+        //Gets the Duration for the activity
+        Console.Write("How long, in seconds, would you like this session to be? ");
+        string duration = Console.ReadLine();
+        int durationInt = int.Parse(duration);
+        SetDuration(durationInt);
+
+        //Prompt for the user to see at the top of the console
+        Console.Clear();
+        Console.WriteLine("Get Ready...");
+        Spinner();
+        Console.WriteLine(_prompt);
+        CountDown("You may begin in: ", 10);
+        Console.WriteLine();
+
+        //Required variables for the activity while loop.
         DateTime startTime = DateTime.Now;
         DateTime futureTime = startTime.AddSeconds(GetDuration());
         DateTime currentTime = DateTime.Now;
 
+        //While loop that lets the user continue to add things to a list until the time runs out.
         while (currentTime < futureTime)
         {
-            Console.Clear();
-            Console.WriteLine(_prompt);
-            Console.Write(">>> ");
+            Console.Write("> ");
             string item = Console.ReadLine();
             _items.Add(item);
             currentTime = DateTime.Now;
         }
 
-        
-        
+        //The list of how many items they wrote down.
+        int numberOfItems = _items.Count();
+        Console.WriteLine($"Congratulations! You listed {numberOfItems} items!");
     }
 
     /// <summary>

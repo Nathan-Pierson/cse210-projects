@@ -7,10 +7,16 @@ class Activity
     private int _duration;
 
 
-    public Activity(string name, string description, int duration)
+    public Activity(string name, string description)
     {
         _name = name;
         _description = description;
+        _duration = 0;
+    }
+
+
+    public void SetDuration(int duration)
+    {
         _duration = duration;
     }
 
@@ -38,7 +44,6 @@ class Activity
     /// </summary>
     public void CountDown(string text, int count)
     {
-        Console.Clear();
         int i = count;
         while (i != 0)
         {
@@ -64,14 +69,14 @@ class Activity
                 Thread.Sleep(250);
             }
         }
-        Console.Write("\r");
+        Console.Write("\b \b");
 
     }
 
 
     public void EndMessage()
     {
-        Console.Clear();
+        Console.WriteLine();
         Console.WriteLine("Well Done!");
         Spinner();
         Console.WriteLine();
