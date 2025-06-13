@@ -9,14 +9,16 @@ class BreathingActivity : Activity
     /// </summary>
     /// <param name="name"></param>
     /// <param name="description"></param>
-    /// <param name="duration"></param>
     public BreathingActivity(string name, string description) : base(name, description)
     {
         _inDuration = 0;
         _outDuration = 0;
     }
 
-
+    /// <summary>
+    /// This sets the in an out deration attributes.
+    /// </summary>
+    /// <param name="duration"></param>
     public void SetInOutDuration(int duration)
     {
         int numberOfSecondsPerBreath = duration / 2; //A given amount of how many times they will breath in and breath out.
@@ -33,17 +35,9 @@ class BreathingActivity : Activity
     /// </summary>
     public void Run()
     {
-        //This is simply writing to the console the description.
-        Console.Clear();
-        Console.WriteLine($"Welcome to the {GetName()}!");
-        Console.WriteLine($"{GetDescription()}");
-        Console.Write("How long, in seconds, would you like this session to be? ");
+        StartMessage();//This calls the starting method in the base activity class.
 
-        //This code sets the duration and in/out duration
-        string duration = Console.ReadLine();
-        int durationInt = int.Parse(duration);
-        SetDuration(durationInt);
-        SetInOutDuration(durationInt);
+        SetInOutDuration(GetDuration());//This calls the method to set the in/out duration attributes.
 
         //This finally begins the breathing activity.
         Console.Clear();

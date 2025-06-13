@@ -60,21 +60,15 @@ class ListingActivity : Activity
     /// </summary>
     public void Run()
     {
-        //Reads the activity description to the console.
-        Console.Clear();
-        Console.WriteLine($"Welcome to the {GetName()}!");
-        Console.WriteLine($"{GetDescription()}");
-
-        //Gets the Duration for the activity
-        Console.Write("How long, in seconds, would you like this session to be? ");
-        string duration = Console.ReadLine();
-        int durationInt = int.Parse(duration);
-        SetDuration(durationInt);
+        StartMessage();//This calls the starting method in the base activity class.
 
         //Prompt for the user to see at the top of the console
         Console.Clear();
         Console.WriteLine("Get Ready...");
         Spinner(6);
+        Console.WriteLine();
+        Console.WriteLine("Prompt");
+        Console.WriteLine("------");
         Console.WriteLine(_prompt);
         CountDown("You may begin in: ", 5);
         Console.WriteLine();

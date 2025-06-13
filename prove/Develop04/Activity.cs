@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 class Activity
 {
@@ -20,18 +21,15 @@ class Activity
         _duration = duration;
     }
 
-
     public string GetName()
     {
         return _name;
     }
 
-
     public string GetDescription()
     {
         return _description;
     }
-
 
     public int GetDuration()
     {
@@ -51,6 +49,7 @@ class Activity
             Thread.Sleep(1000);
             i -= 1;
         }
+        Console.Write("\b \b");
     }
 
 
@@ -74,6 +73,30 @@ class Activity
     }
 
 
+    /// <summary>
+    /// A simple starting/welcome message that gives them the activity name, description, and asks them how long they want to 
+    /// complete this activity for
+    /// </summary>
+    public void StartMessage()
+    {
+        //This is simply writing to the console the description.
+        Console.Clear();
+        Console.WriteLine($"Welcome to the {GetName()}!");
+        Console.WriteLine("-----------------------------------");
+        Console.WriteLine($"{GetDescription()}");
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        Console.Write("How long, in seconds, would you like this session to be? >>> ");
+
+        //This code sets the duration and in/out duration
+        string duration = Console.ReadLine();
+        int durationInt = int.Parse(duration);
+        SetDuration(durationInt);
+    }
+
+
+    /// <summary>
+    /// An end message that is displayed at the end of every activity to congratulate them on their success.
+    /// </summary>
     public void EndMessage()
     {
         Console.WriteLine();
@@ -83,5 +106,4 @@ class Activity
         Console.WriteLine($"You have successfully completed another {_duration} seconds of the {_name}!");
         Spinner(5);
     }
-
 }

@@ -77,24 +77,19 @@ class ReflectionActivity : Activity
     /// </summary>
     public void Run()
     {
-        //Reads the activity description to the console.
-        Console.Clear();
-        Console.WriteLine($"Welcome to the {GetName()}!");
-        Console.WriteLine($"{GetDescription()}");
-
-        //Gets the Duration for the activity
-        Console.Write("How long, in seconds, would you like this session to be? ");
-        string duration = Console.ReadLine();
-        int durationInt = int.Parse(duration);
-        SetDuration(durationInt);
+        StartMessage(); //This calls the starting method in the base activity class.
 
         //Thinking on the prompt
-        Console.WriteLine("Consider the following prompt:");
-        Console.WriteLine($"---{_prompt}---");
+        Console.Clear();
+        Console.WriteLine("Consider the following prompt");
+        Console.WriteLine("------------------------------------");
+        Console.WriteLine(_prompt);
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
         Console.Write("When you have had sufficient time to ponder hit enter.");
         Console.ReadLine();
 
         //The follow up question that they should ponder on
+        Console.Clear();
         Console.WriteLine("Ponder on each of these following questions and how they related to this experience.");
         CountDown("You may begin in: ", 5);
         Console.Clear();
