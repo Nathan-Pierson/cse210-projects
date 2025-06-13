@@ -1,4 +1,4 @@
-class BreathingActivity : Activity
+class BreathingActivity : Activity, Run
 {
     private int _inDuration;
     private int _outDuration;
@@ -14,6 +14,7 @@ class BreathingActivity : Activity
         _inDuration = 0;
         _outDuration = 0;
     }
+
 
     /// <summary>
     /// This sets the in an out deration attributes.
@@ -56,5 +57,6 @@ class BreathingActivity : Activity
             CountDown("Breath Out", 4);
             _outDuration -= 1;
         }
+        Repeat(this);//Calls the repeat method in Activity class
     }
 }

@@ -8,6 +8,11 @@ class Activity
     private int _duration;
 
 
+    /// <summary>
+    /// Constructor for the Activity class
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="description"></param>
     public Activity(string name, string description)
     {
         _name = name;
@@ -16,21 +21,40 @@ class Activity
     }
 
 
+    /// <summary>
+    /// A setter for the duration
+    /// </summary>
+    /// <param name="duration"></param>
     public void SetDuration(int duration)
     {
         _duration = duration;
     }
 
+
+    /// <summary>
+    /// Getter for _name
+    /// </summary>
+    /// <returns> _name </returns>
     public string GetName()
     {
         return _name;
     }
 
+
+    /// <summary>
+    /// Getter for Description
+    /// </summary>
+    /// <returns> _description </returns>
     public string GetDescription()
     {
         return _description;
     }
 
+
+    /// <summary>
+    /// Getter for Duration
+    /// </summary>
+    /// <returns> _duration </returns>
     public int GetDuration()
     {
         return _duration;
@@ -105,5 +129,31 @@ class Activity
         Console.WriteLine();
         Console.WriteLine($"You have successfully completed another {_duration} seconds of the {_name}!");
         Spinner(5);
+    }
+
+
+    /// <summary>
+    /// A simple method that will repeat the activity with the same prompt, but give them more time to breath, list items, or reflect.
+    /// </summary>
+    public void Repeat(Run x)
+    {
+        Console.WriteLine();
+        Console.WriteLine("Would you like more time? (Y/N) >>> ");
+        string answer = Console.ReadLine();
+
+        while (true)
+        {
+            if (answer == "Y" || answer == "y")
+            {
+                x.Run();
+
+                break;
+            }
+            else if (answer == "N" || answer == "n")
+            {
+                break;
+            }
+            else { Console.WriteLine("Please choose an available option."); }
+        }
     }
 }

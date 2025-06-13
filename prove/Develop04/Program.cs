@@ -11,13 +11,16 @@ class Program
         Console.Clear();
         Console.WriteLine("Welcome to the Mindfulness Program!\n");
         int quit = 0;
-        
+
+        //The main loop that is used for the menu and the entire program
         while (quit == 0)
         {
             Menu();
             string choice = Console.ReadLine();
             int choiceInt = int.Parse(choice);
 
+            //The main switch that goes through the users option and gives the correct activity
+            //for the option that the user choose.
             switch (choiceInt)
             {
                 case 1: //Breathing Activity
@@ -46,6 +49,9 @@ class Program
     }
 
 
+    /// <summary>
+    /// The main menu console
+    /// </summary>
     public static void Menu()
     {
         Console.Clear();
@@ -56,4 +62,13 @@ class Program
         Console.WriteLine("4. Quit");
         Console.Write("Please pick an option (1-4) >>> ");
     }
+}
+
+
+/// <summary>
+/// An interface that is used to call all of the programs over again
+/// </summary>
+public interface Run
+{
+    void Run();
 }

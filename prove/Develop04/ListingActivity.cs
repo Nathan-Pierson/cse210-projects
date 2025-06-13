@@ -1,9 +1,11 @@
 using System.Globalization;
 
-class ListingActivity : Activity
+class ListingActivity : Activity, Run
 {
     private string _prompt;
     private List<string> _items;
+
+    //A list of prompts that can then be used to choose a prompt
     private List<string> _prompts = new List<string>
     {
         "Who are people that you appreciate?",
@@ -44,7 +46,6 @@ class ListingActivity : Activity
     /// </summary>
     /// <param name="name"></param>
     /// <param name="description"></param>
-    /// <param name="duration"></param>
     public ListingActivity(string name, string description) : base(name, description)
     {
         string randomPrompt = GetRandomPrompt();
@@ -90,7 +91,10 @@ class ListingActivity : Activity
         //The list of how many items they wrote down.
         int numberOfItems = _items.Count();
         Console.WriteLine($"Congratulations! You listed {numberOfItems} items!");
+
+        Repeat(this);//Calls the repeat method in Activity class
     }
+
 
     /// <summary>
     /// This is a quick method that returns a random prompt that 

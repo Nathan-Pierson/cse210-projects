@@ -1,8 +1,10 @@
-class ReflectionActivity : Activity
+class ReflectionActivity : Activity, Run
 {
     private string _prompt;
     private string _question;
     private Random _random = new Random();
+
+    //A list of reflection prompts that can be used to choose a random prompt
     private List<string> _reflectionPrompts = new List<string>
     {
         "Think of a time when you stood up for someone else.",
@@ -31,6 +33,8 @@ class ReflectionActivity : Activity
         "Describe a situation where you had to lead a group or project.",
         "When have you felt a sense of awe or wonder."
     };
+
+    //A list of questions that can be used to grab random questions.
     private List<string> _reflectionQuestions = new List<string>
     {
         "Why was this experience meaningful to you?",
@@ -61,13 +65,17 @@ class ReflectionActivity : Activity
     };
 
 
+    /// <summary>
+    /// Constructor for the Reflection Class
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="description"></param>
     public ReflectionActivity(string name, string description) : base(name, description)
     {
         string prompt = GetRandomPrompt();
         string question = GetRandomQuestion();
         _prompt = prompt;
         _question = question;
-
     }
 
 
@@ -108,9 +116,8 @@ class ReflectionActivity : Activity
             _question = anotherQuestion;
             currentTime = DateTime.Now;
         }
+        Repeat(this);//Calls the repeat method in Activity class
     }
-
-
 
 
     /// <summary>
