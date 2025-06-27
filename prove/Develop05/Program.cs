@@ -7,6 +7,7 @@ class Program
     static void Main(string[] args)
     {
         //Opening statement
+        Console.Clear();
         Console.WriteLine("Welcome to the Goal Activity");
         Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
@@ -15,9 +16,14 @@ class Program
         int choiceNumber = 1;
         while (choiceNumber != 0)
         {
+            Console.Clear();
             Q.SetScore();
             Q.SetLevel();
-            Console.WriteLine($"You are level {Q.getLevel} with {Q.getScore} points.");
+            Console.WriteLine($"You are 'A {Q.GetLevelName()} Being' at level {Q.GetLevel()} with {Q.GetScore()} points.");
+            ///add how many points they need to get to the next level here
+            /// 
+            /// 
+            /// Don't forget.
             Console.WriteLine();
             MainMenu();
             Console.Write("Select a choice from the Menu Options: ");
@@ -27,30 +33,23 @@ class Program
             switch (choiceNumber)
             {
                 case 1: //Create Goal
-                    Console.WriteLine("The Types of Goals are:");
-                    Console.WriteLine("1. Simple Goal");
-                    Console.WriteLine("2. Eternal Goal");
-                    Console.WriteLine("3. Checklist Goal");
-                    Console.Write("What type of goal would you like to create? ");
-                    string goal = Console.ReadLine();
-                    int goalInt = int.Parse(goal);
-                    Q.SetGoal(goalInt);
+                    Q.SetGoal();
                     break;
 
                 case 2: //List Goals
-
+                    Q.ListGoals();
                     break;
 
                 case 3: //Save Goals
-
+                    Q.SaveGoals();
                     break;
 
                 case 4: //Load Goals
-
+                    Q.LoadGoals();
                     break;
 
                 case 5: //Record Event
-
+                    Q.ReportGoals();
                     break;
 
                 case 0: //Quit

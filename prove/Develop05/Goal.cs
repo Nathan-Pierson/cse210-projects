@@ -3,6 +3,7 @@ abstract class Goal
     private string _name;
     private string _description;
     private int _points;
+    private int _numberGoal;
     private bool _isComplete;
 
 
@@ -11,6 +12,7 @@ abstract class Goal
         _name = name;
         _description = description;
         _points = points;
+        _numberGoal = 0;
         _isComplete = false;
     }
 
@@ -39,6 +41,18 @@ abstract class Goal
     }
 
 
+    public int GetNumberGoal()
+    {
+        return _numberGoal;
+    }
+
+
+    public void SetNumberGoal(int number)
+    {
+        _numberGoal = number;
+    }
+
+
     public void IsComplete()
     {
         _isComplete = true;
@@ -51,5 +65,15 @@ abstract class Goal
     /// </summary>
     public abstract void Display();
 
+
+    /// <summary>
+    /// A polymorphic method that is used to set a goal as completed
+    /// </summary>
     public abstract void MarkComplete();
+
+
+    /// <summary>
+    /// A polymorphic method used to calculate all points acquired from each completion.
+    /// </summary>
+    public abstract int GetAllPoints();
 }

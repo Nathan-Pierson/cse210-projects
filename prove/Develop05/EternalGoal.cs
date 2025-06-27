@@ -12,11 +12,16 @@ class EternalGoal : Goal
 
     public override void Display()
     {
-        Console.WriteLine($"[∞] {GetName()} ({GetDescription}) Completions:{_completions}");
+        Console.WriteLine($"[∞] {GetName()} ({GetDescription()}) Completions:{_completions}");
     }
 
     public override void MarkComplete()
     {
         _completions += 1;
+    }
+
+    public override int GetAllPoints()
+    {
+        return GetPoints() * _completions;
     }
 }

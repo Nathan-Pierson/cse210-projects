@@ -33,7 +33,21 @@ class ChecklistGoal : Goal
         if (_completions == _amountOfCompletions)
         {
             IsComplete();
-            
         }
+    }
+
+    public override int GetAllPoints()
+    {
+        int points = 0;
+        if (_completions == _amountOfCompletions)
+        {
+            points = (GetPoints() * _completions) + _bonusPoints;
+        }
+        else
+        {
+            points = GetPoints() * _completions;
+        }
+
+        return points;
     }
 }

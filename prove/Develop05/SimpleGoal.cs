@@ -22,4 +22,10 @@ class SimpleGoal : Goal
     {
         IsComplete();
     }
+
+
+    public override int GetAllPoints()
+    {
+        return GetPoints();
+    }
 }
