@@ -21,10 +21,7 @@ class Program
             Q.SetScore();
             Q.SetLevel();
             Console.WriteLine($"You are 'A {Q.GetLevelName()} Being' at level {Q.GetLevel()} with {Q.GetScore()} points.");
-            ///add how many points they need to get to the next level here
-            /// 
-            /// 
-            /// Don't forget.
+            Console.WriteLine($"You need {Q.GetPointsToNextLevel()} points to reach the next level!");
             Console.WriteLine();
             MainMenu();
             Console.Write("Select a choice from the Menu Options: ");

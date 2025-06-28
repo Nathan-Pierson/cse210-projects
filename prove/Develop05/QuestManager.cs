@@ -1,3 +1,4 @@
+using System.Dynamic;
 using System.IO;
 
 class QuestManager
@@ -8,6 +9,7 @@ class QuestManager
     private int _score; //The total score that the user has acquired
     private int _level; //The level of the user
     private string _levelName; //The level name of the user.
+    private int _pointsToNextLevel; //This is the amount of points they need to get to the next level.
 
 
     public QuestManager()
@@ -17,7 +19,9 @@ class QuestManager
         _levelName = "Premortal";
     }
 
+    public int GetPointsToNextLevel(){ return _pointsToNextLevel; }
 
+    
     /// <summary>
     /// This method will create an object for the new goal that people
     /// want. 
@@ -124,41 +128,45 @@ class QuestManager
         }
     }
 
-
-    /// <summary>
-    /// This method will look at the _score to see how many points you
-    /// have acquired and will then determine what level you will be
-    /// assigned. 
-    /// </summary>
-    public void SetLevel()
+/// <summary>
+/// This method will look at the _score to see how many points you
+/// have acquired and will then determine what level you will be
+/// assigned. It also calculates how many points are needed to reach
+/// the next level.
+/// </summary>
+public void SetLevel()
+{
+    if (_score < 100)
     {
-        if (_score < 100)
-        {
-            _level = 0;
-            _levelName = "Premortal";
-        }
-        else if (_score < 300)
-        {
-            _level = 1;
-            _levelName = "Telestial";
-        }
-        else if (_score < 600)
-        {
-            _level = 2;
-            _levelName = "Terrestrial";
-        }
-        else if (_score < 1000)
-        {
-            _level = 3;
-            _levelName = "Celestial";
-        }
-        else
-        {
-            _level = 4;
-            _levelName = "Exalted";
-        }
+        _level = 0;
+        _levelName = "Premortal";
+        _pointsToNextLevel = 100 - _score;
     }
-
+    else if (_score < 300)
+    {
+        _level = 1;
+        _levelName = "Telestial";
+        _pointsToNextLevel = 300 - _score;
+    }
+    else if (_score < 600)
+    {
+        _level = 2;
+        _levelName = "Terrestrial";
+        _pointsToNextLevel = 600 - _score;
+    }
+    else if (_score < 1000)
+    {
+        _level = 3;
+        _levelName = "Celestial";
+        _pointsToNextLevel = 1000 - _score;
+    }
+    else
+    {
+        _level = 4;
+        _levelName = "Exalted";
+        _pointsToNextLevel = 0; // Already at max level
+    }
+}
 
     /// <summary>
     /// Returns the score the player has achieved.
