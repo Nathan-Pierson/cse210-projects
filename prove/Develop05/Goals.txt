@@ -1,0 +1,6 @@
+Score:130
+Level:1
+LevelName:Telestial
+EternalGoal:pray|Pray! Every! Day????|20|1
+SimpleGoal:do something|do anything please|50|True
+ChecklistGoal:stuff|do everything always|20|3|200|5

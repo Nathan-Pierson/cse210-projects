@@ -14,6 +14,18 @@ class ChecklistGoal : Goal
     }
 
 
+    public void SetCompletions(int completions)
+    {
+        _completions = completions;
+    }
+
+    public int GetCompletions() { return _completions; }
+
+    public int GetAmountOfCompletions(){return _amountOfCompletions;}
+
+    public int GetBonusPoints(){return _bonusPoints;}
+
+
     public override void Display()
     {
         if (_completions == _amountOfCompletions)

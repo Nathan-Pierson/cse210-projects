@@ -1,6 +1,8 @@
+using System.IO;
+
 class QuestManager
 {
-    private List<EternalGoal> _eternalGoals = new List<EternalGoal>(); 
+    private List<EternalGoal> _eternalGoals = new List<EternalGoal>();
     private List<SimpleGoal> _simpleGoals = new List<SimpleGoal>();
     private List<ChecklistGoal> _checklistGoals = new List<ChecklistGoal>();
     private int _score; //The total score that the user has acquired
@@ -188,23 +190,163 @@ class QuestManager
     }
 
 
-    /// <summary>
-    /// This method will save all of your goals onto a file
-    /// </summary>
-    public void SaveGoals()
+/// <summary>
+/// This method will save all of your goals onto a file
+/// </summary>
+public void SaveGoals()
+{
+    Console.Clear();
+    Console.WriteLine("What do you want to name the file?");
+    Console.Write(">");
+    string fileName = Console.ReadLine();
+    
+    using (StreamWriter writer = new StreamWriter(fileName))
     {
-
+        // Save the current score and level first
+        writer.WriteLine($"Score:{_score}");
+        writer.WriteLine($"Level:{_level}");
+        writer.WriteLine($"LevelName:{_levelName}");
+        
+        // Save Eternal Goals
+        if (_eternalGoals != null)
+        {
+            foreach (EternalGoal goal in _eternalGoals)
+            {
+                writer.WriteLine(TheFactoryPattern(goal));
+            }
+        }
+        
+        // Save Simple Goals
+        if (_simpleGoals != null)
+        {
+            foreach (SimpleGoal goal in _simpleGoals)
+            {
+                writer.WriteLine(TheFactoryPattern(goal));
+            }
+        }
+        
+        // Save Checklist Goals
+        if (_checklistGoals != null)
+        {
+            foreach (ChecklistGoal goal in _checklistGoals)
+            {
+                writer.WriteLine(TheFactoryPattern(goal));
+            }
+        }
     }
+        
+        Console.WriteLine($"Goals successfully saved to {fileName}!");
+        Console.WriteLine("Press enter to continue...");
+        Console.ReadLine();
+}
 
-
-    /// <summary>
-    /// This method will read a file and load all of the goals back 
-    /// into the attributes so it can be used again.
-    /// </summary>
-    public void LoadGoals()
+/// <summary>
+/// A simple method that will take all of the objects and turn them into 
+/// useable strings that can be saved to a file for future use.
+/// </summary>
+public string TheFactoryPattern(object stuff)
+{
+    if (stuff is EternalGoal eternalGoal)
     {
-
+        return $"EternalGoal:{eternalGoal.GetName()}|{eternalGoal.GetDescription()}|{eternalGoal.GetPoints()}|{eternalGoal.GetCompletions()}";
     }
+    else if (stuff is SimpleGoal simpleGoal)
+    {
+        return $"SimpleGoal:{simpleGoal.GetName()}|{simpleGoal.GetDescription()}|{simpleGoal.GetPoints()}|{simpleGoal.GetStatus()}";
+    }
+    else if (stuff is ChecklistGoal checklistGoal)
+    {
+        return $"ChecklistGoal:{checklistGoal.GetName()}|{checklistGoal.GetDescription()}|{checklistGoal.GetPoints()}|{checklistGoal.GetCompletions()}|{checklistGoal.GetAmountOfCompletions()}|{checklistGoal.GetBonusPoints()}";
+    }
+    else
+    {
+        return "Unknown goal type";
+    }
+}
+
+
+/// <summary>
+/// This method will read a file and load all of the goals back 
+/// into the attributes so it can be used again.
+/// </summary>
+public void LoadGoals()
+{
+    Console.Clear();
+    Console.WriteLine("What is the name of the file you want to load?");
+    Console.Write(">");
+    string fileName = Console.ReadLine();
+    
+    try
+    {
+        // Initialize lists to ensure they're not null
+        _eternalGoals = new List<EternalGoal>();
+        _simpleGoals = new List<SimpleGoal>();
+        _checklistGoals = new List<ChecklistGoal>();
+        
+        using (StreamReader reader = new StreamReader(fileName))
+        {
+            string line;
+            while ((line = reader.ReadLine()) != null)
+            {
+                // This will set the score, level, and level name.
+                if (line.StartsWith("Score:"))
+                {
+                    _score = int.Parse(line.Substring(6));
+                }
+                else if (line.StartsWith("Level:"))
+                {
+                    _level = int.Parse(line.Substring(6));
+                }
+                else if (line.StartsWith("LevelName:"))
+                {
+                    _levelName = line.Substring(10);
+                }
+                // This will make the eternal goal objects.
+                else if (line.StartsWith("EternalGoal:"))
+                {
+                    string data = line.Substring(12); //Removes the heading "EternalGoal:"
+                    string[] parts = data.Split('|');
+                    
+                    EternalGoal goal = new EternalGoal(parts[0], parts[1], int.Parse(parts[2]));
+                    goal.SetCompletions(int.Parse(parts[3]));
+                    _eternalGoals.Add(goal);
+                }
+                // This is loading all of the simple goals
+                else if (line.StartsWith("SimpleGoal:"))
+                {
+                    string data = line.Substring(11); // removes the heading "SimpleGoal :"
+                    string[] parts = data.Split('|');
+                    
+                    SimpleGoal goal = new SimpleGoal(parts[0], parts[1], int.Parse(parts[2]));
+                    bool isComplete = bool.Parse(parts[3]);
+                    if (isComplete == true){ goal.IsComplete(); }
+                    _simpleGoals.Add(goal);
+                }
+                // This is for loading all of the checklist goals
+                else if (line.StartsWith("ChecklistGoal:"))
+                {
+                    string data = line.Substring(14);//Removes the heading "ChecklistGoal :"
+                    string[] parts = data.Split('|');
+                    
+                    ChecklistGoal goal = new ChecklistGoal(parts[0], parts[1], int.Parse(parts[2]), 
+                                                         int.Parse(parts[5]), int.Parse(parts[4]));
+                    goal.SetCompletions(int.Parse(parts[3]));
+                    _checklistGoals.Add(goal);
+                }
+            }
+        }
+        
+        Console.WriteLine($"Goals successfully loaded from {fileName}!");
+        Console.WriteLine("Press enter to continue...");
+        Console.ReadLine();
+    }
+    catch (FileNotFoundException)
+    {
+        Console.WriteLine($"File '{fileName}' not found!");
+        Console.WriteLine("Press enter to continue...");
+        Console.ReadLine();
+    }
+}
 
 
     /// <summary>

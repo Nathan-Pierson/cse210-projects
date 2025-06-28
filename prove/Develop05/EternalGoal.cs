@@ -10,6 +10,13 @@ class EternalGoal : Goal
     }
 
 
+    public void SetCompletions(int completions)
+    {
+        _completions = completions;
+    }
+
+    public int GetCompletions() { return _completions; }
+
     public override void Display()
     {
         Console.WriteLine($"[∞] {GetName()} ({GetDescription()}) Completions:{_completions}");
