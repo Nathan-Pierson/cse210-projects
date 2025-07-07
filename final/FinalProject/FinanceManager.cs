@@ -2,13 +2,25 @@ using System.Runtime.CompilerServices;
 
 class FinanceManager
 {
+    //Attributes of lists of objects for each purchase category
     private List<ProRatedPurchase> _proRated = new List<ProRatedPurchase>();
     private List<HomeGoodsPurchase> _homeGoods = new List<HomeGoodsPurchase>();
     private List<GroceriesPurchase> _groceries = new List<GroceriesPurchase>();
     private List<GasPurchase> _gas = new List<GasPurchase>();
     private List<EatingOutPurchase> _eatingOut = new List<EatingOutPurchase>();
     private List<MiscellaneousPurchase> _miscellaneous = new List<MiscellaneousPurchase>();
+
+    //Attributes for all of the total costs
     private float _totalCost; //Used to find out how much a user has spent
+    private float _proRatedTotal; //Total spent for ProRated
+    private float _groceriesTotal; //Total spent for Groceries
+    private float _homeGoodsTotal; //Total spent for Home Goods
+    private float _gasTotal; //Total spent for Gas
+    private float _eatingOutTotal; //Total spent for Eating Out
+    private float _miscellaneousTotal; //Total spent for Miscellaneous
+
+    //Attributes for financial goals
+    private float _totalGoal; //Goal for total spent
     private float _proRatedGoal; //Goal for proRated
     private float _homeGoodsGoal; //Goal for HomeGoods
     private float _groceriesGoal; //Goal for groceries
@@ -16,16 +28,29 @@ class FinanceManager
     private float _eatingOutGoal; //Goal for EatingOut
     private float _miscellaneousGoal; //Goal for miscellaneous
 
-
+    /// <summary>
+    /// Constructor to initialize the FinanceManager Object
+    /// </summary>
     public FinanceManager()
     {
+        //initializing total attributes
         _totalCost = 0;
+        _proRatedTotal = 0;
+        _groceriesTotal = 0;
+        _homeGoodsTotal = 0;
+        _eatingOutTotal = 0;
+        _gasTotal = 0;
+        _miscellaneousTotal = 0;
+
+        //initializing goal attributes
+        _totalGoal = 0;
         _proRatedGoal = 0;
         _eatingOutGoal = 0;
         _gasGoal = 0;
         _homeGoodsGoal = 0;
         _groceriesGoal = 0;
         _miscellaneousGoal = 0;
+
     }
 
 
@@ -100,7 +125,7 @@ class FinanceManager
                     Console.WriteLine("How many did you purchase?");
                     Console.Write(">>> ");
                     string amount = Console.ReadLine();
-                    int amountInt = int.Parse(amount);                    
+                    int amountInt = int.Parse(amount);
 
                     //Date
                     Console.WriteLine("What date was this purchase made? (month/day/year)");
@@ -122,7 +147,7 @@ class FinanceManager
 
                     //Making Object and Calling Constructor
                     GroceriesPurchase groceries = new GroceriesPurchase(item, costFloat, amountInt, date, necessityInt);
-                    _groceries.Add(groceries);                   
+                    _groceries.Add(groceries);
                     break;
                 }
 
@@ -145,7 +170,7 @@ class FinanceManager
                     string oneTime = Console.ReadLine();
                     int oneTimeInt = 0;
                     if (oneTime == "Yes" || oneTime == "yes") { oneTimeInt = 1; }
-                    else{ oneTimeInt = 2; }
+                    else { oneTimeInt = 2; }
 
                     int amountInt = 0;
                     if (oneTimeInt == 1)
@@ -160,7 +185,7 @@ class FinanceManager
                         Console.Write(">>> ");
                         string amount = Console.ReadLine();
                         amountInt = int.Parse(amount);
-                    }                 
+                    }
 
                     //Date
                     Console.WriteLine("What date was this purchase made? (month/day/year)");
@@ -169,7 +194,7 @@ class FinanceManager
 
                     //Making Object and Calling Constructor
                     HomeGoodsPurchase homeGoods = new HomeGoodsPurchase(item, costFloat, amountInt, date, oneTimeInt);
-                    _homeGoods.Add(homeGoods);             
+                    _homeGoods.Add(homeGoods);
                     break;
                 }
 
@@ -196,7 +221,7 @@ class FinanceManager
                     string station = Console.ReadLine();
 
                     //Amount
-                    int amountInt = 1;                    
+                    int amountInt = 1;
 
                     //Date
                     Console.WriteLine("What date was this purchase made? (month/day/year)");
@@ -211,16 +236,103 @@ class FinanceManager
 
             case 5: // Eating Out Purchase
                 {
+                    //Item
+                    Console.WriteLine("What order/food did you purchase?");
+                    Console.Write(">>> ");
+                    string item = Console.ReadLine();
+
+                    //Establishment
+                    Console.WriteLine("What establishment was this purchase made at?");
+                    Console.Write(">>> ");
+                    string establishment = Console.ReadLine();
+
+                    //Cost
+                    Console.WriteLine("What is the cost of the purchase?");
+                    Console.Write(">>> ");
+                    string cost = Console.ReadLine();
+                    float costFloat = float.Parse(cost);
+
+                    //Amount
+                    Console.WriteLine("How many did you purchase?");
+                    Console.Write(">>> ");
+                    string amount = Console.ReadLine();
+                    int amountInt = int.Parse(amount);
+
+                    //Date
+                    Console.WriteLine("What date was this purchase made? (month/day/year)");
+                    Console.Write(">>> ");
+                    string date = Console.ReadLine();
+
+                    //Was Date???
+                    Console.WriteLine("Was this purchase for a date? (Yes/No)");
+                    Console.Write(">>> ");
+                    string answer = Console.ReadLine();
+                    int isDate = 0;
+                    if (answer == "Yes" || answer == "yes")
+                    {
+                        isDate = 1;
+                    }
+                    else
+                    {
+                        isDate = 2;
+                    }
+
+                    //Making Object and Calling Constructor
+                    EatingOutPurchase eatingOut = new EatingOutPurchase(item, costFloat, amountInt, date, establishment, isDate);
+                    _eatingOut.Add(eatingOut);
                     break;
                 }
 
             case 6: // Miscellaneous Purchase
                 {
+                    //Item
+                    Console.WriteLine("What grocery or food item did you purchase?");
+                    Console.Write(">>> ");
+                    string item = Console.ReadLine();
+
+                    //Description
+                    Console.WriteLine("What is a quick description of why you purchased this item.");
+                    Console.Write(">>> ");
+                    string description = Console.ReadLine();
+
+                    //Cost
+                    Console.WriteLine("What is the cost of the purchase?");
+                    Console.Write(">>> ");
+                    string cost = Console.ReadLine();
+                    float costFloat = float.Parse(cost);
+
+                    //Amount
+                    Console.WriteLine("How many did you purchase?");
+                    Console.Write(">>> ");
+                    string amount = Console.ReadLine();
+                    int amountInt = int.Parse(amount);
+
+                    //Date
+                    Console.WriteLine("What date was this purchase made? (month/day/year)");
+                    Console.Write(">>> ");
+                    string date = Console.ReadLine();
+
+                    //Necessity
+                    Console.WriteLine("Was this purchase necessary or was it a splurge? (Yes/No)");
+                    string necessity = Console.ReadLine();
+                    int necessityInt = 0;
+                    if (necessity == "Yes" || necessity == "yes")
+                    {
+                        necessityInt = 1;
+                    }
+                    else
+                    {
+                        necessityInt = 2;
+                    }
+
+                    //Making Object and Calling Constructor
+                    MiscellaneousPurchase miscellaneous = new MiscellaneousPurchase(item, costFloat, amountInt, date, description, necessityInt);
+                    _miscellaneous.Add(miscellaneous);
                     break;
                 }
         }
-
     }
+
 
     /// <summary>
     /// A method to display all of the finances from all of the
@@ -238,7 +350,10 @@ class FinanceManager
     /// </summary>
     public void TotalSpent()
     {
-
+        foreach (ProRatedPurchase pro in _proRated)
+        {
+            
+        }
     }
 
 
@@ -248,7 +363,93 @@ class FinanceManager
     /// </summary>
     public void SetFinancialGoal()
     {
+        Console.WriteLine("What budget would you like to set?");
+        Console.WriteLine();
+        Console.WriteLine("1. Total Budget");
+        Console.WriteLine("2. ProRated Budget");
+        Console.WriteLine("3. Groceries Budget");
+        Console.WriteLine("4. Home Goods Budget");
+        Console.WriteLine("5. Gas Budget");
+        Console.WriteLine("6. Eating Out Budget");
+        Console.WriteLine("7. Miscellaneous Budget");
+        Console.Write(">>> ");
+        string option = Console.ReadLine();
+        int optionInt = int.Parse(option);
 
+        string budget = "0";
+        float budgetFloat = 0;
+        switch (optionInt)
+        {
+            case 1: //Total Budget
+                {
+                    Console.WriteLine("What do you want the total budget to be?");
+                    Console.Write(">>> ");
+                    budget = Console.ReadLine();
+                    budgetFloat = float.Parse(budget);
+                    _totalGoal = budgetFloat;
+                    break;
+                }
+
+            case 2: //Pro Rated Budget
+                {
+                    Console.WriteLine("What do you want the total budget to be?");
+                    Console.Write(">>> ");
+                    budget = Console.ReadLine();
+                    budgetFloat = float.Parse(budget);
+                    _proRatedGoal = budgetFloat;                    
+                    break;
+                }
+
+            case 3: //Grocery Budget
+                {
+                    Console.WriteLine("What do you want the total budget to be?");
+                    Console.Write(">>> ");
+                    budget = Console.ReadLine();
+                    budgetFloat = float.Parse(budget);
+                    _groceriesGoal = budgetFloat;                    
+                    break;
+                }
+
+            case 4: //Home Good Budget
+                {
+                    Console.WriteLine("What do you want the total budget to be?");
+                    Console.Write(">>> ");
+                    budget = Console.ReadLine();
+                    budgetFloat = float.Parse(budget);
+                    _homeGoodsGoal = budgetFloat;                    
+                    break;
+                }
+
+            case 5: //Gas Budget
+                {
+                    Console.WriteLine("What do you want the total budget to be?");
+                    Console.Write(">>> ");
+                    budget = Console.ReadLine();
+                    budgetFloat = float.Parse(budget);
+                    _gasGoal = budgetFloat;                    
+                    break;
+                }
+
+            case 6: //Eating Out Budget
+                {
+                    Console.WriteLine("What do you want the total budget to be?");
+                    Console.Write(">>> ");
+                    budget = Console.ReadLine();
+                    budgetFloat = float.Parse(budget);
+                    _eatingOutGoal = budgetFloat;                    
+                    break;
+                }
+
+            case 7: //Miscellaneous Budget
+                {
+                    Console.WriteLine("What do you want the total budget to be?");
+                    Console.Write(">>> ");
+                    budget = Console.ReadLine();
+                    budgetFloat = float.Parse(budget);
+                    _miscellaneousGoal = budgetFloat;                    
+                    break;
+                }                                                                                                
+        }
     }
 
 
