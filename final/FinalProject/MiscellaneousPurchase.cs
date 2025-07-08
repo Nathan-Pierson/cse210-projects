@@ -11,6 +11,16 @@ class MiscellaneousPurchase : Purchase
     }
 
 
+    public string GetDescription()
+    {
+        return _description;
+    }
+
+    public int GetNecessity()
+    {
+        return _necessity;
+    }
+
     public override void TotalCost()
     {
         throw new NotImplementedException();

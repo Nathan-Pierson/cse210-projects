@@ -10,6 +10,15 @@ class EatingOutPurchase : Purchase
         _isDate = isDate;
     }
 
+    public string GetEstablishment()
+    {
+        return _establishment;
+    }
+
+    public int GetIsDate()
+    {
+        return _isDate;
+    }
 
     public override void TotalCost()
     {

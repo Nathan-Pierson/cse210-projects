@@ -10,6 +10,15 @@ class GasPurchase : Purchase
         _station = station;
     }
 
+    public float GetGallons()
+    {
+        return _gallons;
+    }
+
+    public string GetStation()
+    {
+        return _station;
+    }
 
     public override void TotalCost()
     {

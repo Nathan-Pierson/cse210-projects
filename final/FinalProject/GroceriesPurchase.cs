@@ -8,6 +8,10 @@ class GroceriesPurchase : Purchase
         _necessity = necessity;
     }
 
+    public int GetNecessity()
+    {
+        return _necessity;
+    }
 
     public override void TotalCost()
     {

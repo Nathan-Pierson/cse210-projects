@@ -6,6 +6,12 @@ class ProRatedPurchase : Purchase
     {
         _timesPerYear = times;
     }
+
+    public int GetTimesPerYear()
+    {
+        return _timesPerYear;
+    }
+
     public override void TotalCost()
     {
         throw new NotImplementedException();

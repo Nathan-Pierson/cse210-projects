@@ -352,8 +352,45 @@ class FinanceManager
     {
         foreach (ProRatedPurchase pro in _proRated)
         {
-            
+            float money = pro.GetCost() * pro.GetAmount();
+            _totalCost += money;
+            _proRatedTotal += money;
         }
+
+        foreach (GroceriesPurchase gro in _groceries)
+        {
+            float money = gro.GetCost() * gro.GetAmount();
+            _totalCost += money;
+            _groceriesTotal += money;
+        }
+
+        foreach (HomeGoodsPurchase home in _homeGoods)
+        {
+            float money = home.GetCost() * home.GetAmount();
+            _totalCost += money;
+            _homeGoodsTotal += money;
+        }
+
+        foreach (GasPurchase gas in _gas)
+        {
+            float money = gas.GetCost() * gas.GetAmount();
+            _totalCost += money;
+            _gasTotal += money;
+        }
+
+        foreach (EatingOutPurchase eat in _eatingOut)
+        {
+            float money = eat.GetCost() * eat.GetAmount();
+            _totalCost += money;
+            _eatingOutTotal += money;
+        } 
+
+        foreach (MiscellaneousPurchase mis in _miscellaneous)
+        {
+            float money = mis.GetCost() * mis.GetAmount();
+            _totalCost += money;
+            _miscellaneousTotal += money;
+        }                           
     }
 
 

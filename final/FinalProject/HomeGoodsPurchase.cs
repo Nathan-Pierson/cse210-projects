@@ -7,6 +7,11 @@ class HomeGoodsPurchase : Purchase
         _oneTimePurchase = times;
     }
 
+    public int GetOneTimePurchase()
+    {
+        return _oneTimePurchase;
+    }
+
 
     public override void TotalCost()
     {
