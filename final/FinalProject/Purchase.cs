@@ -36,14 +36,6 @@ abstract class Purchase
 
 
     /// <summary>
-    /// An abstract method used to calculate the total cost of
-    /// all the purchases that have been entered based on the
-    /// amount they bought.
-    /// </summary>
-    public abstract void TotalCost();
-
-
-    /// <summary>
     /// An abstract method used to display everything that the user
     /// entered that is relevant to the purchase.
     /// </summary>

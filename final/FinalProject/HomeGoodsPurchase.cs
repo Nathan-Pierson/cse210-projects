@@ -1,26 +1,26 @@
 class HomeGoodsPurchase : Purchase
 {
-    private int _oneTimePurchase;
+    private string _oneTimePurchase;
 
-    public HomeGoodsPurchase(string item, float cost, int amount, string date, int times) : base(item, cost, amount, date)
+    public HomeGoodsPurchase(string item, float cost, int amount, string date, string times) : base(item, cost, amount, date)
     {
         _oneTimePurchase = times;
     }
 
-    public int GetOneTimePurchase()
+    public string GetOneTimePurchase()
     {
         return _oneTimePurchase;
     }
 
 
-    public override void TotalCost()
-    {
-        throw new NotImplementedException();
-    }
-
-
     public override void Display()
     {
-        throw new NotImplementedException();
+        Console.WriteLine();
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        Console.WriteLine($"Date: {GetDate()}");
+        Console.WriteLine($"Item: {GetItem()}");
+        Console.WriteLine($"Cost: ${GetCost()}");
+        Console.WriteLine($"Quantity: {GetAmount()}");
+        Console.WriteLine($"Will you purchase this again?: {_oneTimePurchase}");
     }
 }

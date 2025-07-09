@@ -13,14 +13,22 @@ class GroceriesPurchase : Purchase
         return _necessity;
     }
 
-    public override void TotalCost()
-    {
-        throw new NotImplementedException();
-    }
-
 
     public override void Display()
     {
-        throw new NotImplementedException();
+        Console.WriteLine();
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        Console.WriteLine($"Date: {GetDate()}");
+        Console.WriteLine($"Item: {GetItem()}");
+        Console.WriteLine($"Cost: ${GetCost()}");
+        Console.WriteLine($"Quantity: {GetAmount()}");
+        if (_necessity == 1)
+        {
+            Console.WriteLine("This item was necessary!");
+        }
+        else
+        {
+            Console.WriteLine("This item was not necessary.");
+        }
     }
 }

@@ -12,14 +12,14 @@ class ProRatedPurchase : Purchase
         return _timesPerYear;
     }
 
-    public override void TotalCost()
-    {
-        throw new NotImplementedException();
-    }
-
 
     public override void Display()
     {
-        throw new NotImplementedException();
+        Console.WriteLine();
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        Console.WriteLine($"Date: {GetDate()}");
+        Console.WriteLine($"Item: {GetItem()}");
+        Console.WriteLine($"Cost: ${GetCost()}");
+        Console.WriteLine($"Times Per Year: {_timesPerYear}");
     }
 }

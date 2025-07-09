@@ -20,14 +20,15 @@ class GasPurchase : Purchase
         return _station;
     }
 
-    public override void TotalCost()
-    {
-        throw new NotImplementedException();
-    }
-
 
     public override void Display()
     {
-        throw new NotImplementedException();
+        Console.WriteLine();
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        Console.WriteLine($"Date: {GetDate()}");
+        Console.WriteLine($"Item: {GetItem()}");
+        Console.WriteLine($"Cost: ${GetCost()}");
+        Console.WriteLine($"Gallons: {_gallons}");
+        Console.WriteLine($"Gas Station: {_station}");
     }
 }

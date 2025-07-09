@@ -21,14 +21,23 @@ class MiscellaneousPurchase : Purchase
         return _necessity;
     }
 
-    public override void TotalCost()
-    {
-        throw new NotImplementedException();
-    }
-
 
     public override void Display()
     {
-        throw new NotImplementedException();
+        Console.WriteLine();
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        Console.WriteLine($"Date: {GetDate()}");
+        Console.WriteLine($"Item: {GetItem()}");
+        Console.WriteLine($"Cost: ${GetCost()}");
+        Console.WriteLine($"Quantity: {GetAmount()}");
+        Console.WriteLine($"Full Item Description: {_description}");
+        if (_necessity == 1)
+        {
+            Console.WriteLine("This purchase was necessary.");
+        }
+        else
+        {
+            Console.WriteLine("This purchase was a splurge");
+        }
     }
 }

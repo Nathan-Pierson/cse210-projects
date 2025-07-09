@@ -20,14 +20,23 @@ class EatingOutPurchase : Purchase
         return _isDate;
     }
 
-    public override void TotalCost()
-    {
-        throw new NotImplementedException();
-    }
-
 
     public override void Display()
     {
-        throw new NotImplementedException();
+        Console.WriteLine();
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        Console.WriteLine($"Date: {GetDate()}");
+        Console.WriteLine($"Item: {GetItem()}");
+        Console.WriteLine($"Cost: ${GetCost()}");
+        Console.WriteLine($"Quantity: {GetAmount()}");
+        Console.WriteLine($"Establishment: {_establishment}");
+        if (_isDate == 1)
+        {
+            Console.WriteLine("This Was a Date!!!");
+        }
+        else
+        {
+            Console.WriteLine("This was not a date");
+        }
     }
 }

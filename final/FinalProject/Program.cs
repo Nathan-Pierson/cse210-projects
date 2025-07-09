@@ -6,7 +6,11 @@ class Program
     {
         Console.Clear();
         Console.WriteLine("Welcome to Finance Manager");
+        Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~");
         Console.WriteLine();
+        Console.Write("Press Enter to Continue...");
+        Console.ReadLine();
+
         int q = 1;
         FinanceManager finance = new FinanceManager();
 
@@ -38,17 +42,19 @@ class Program
 
                 case 4: // Save Finance History
                     {
-                        
+                        finance.SaveFinances();
                         break;
                     }
 
                 case 5: // Load Finances
                     {
+                        finance.LoadFinances();
                         break;
                     }
 
                 case 0: // Quit
                     {
+                        q = 0;
                         break;
                     }
             }
@@ -57,6 +63,7 @@ class Program
 
     public static void Menu()
     {
+        Console.Clear();
         Console.WriteLine("Menu Options:");
         Console.WriteLine();
         Console.WriteLine("1. Add Purchase");
@@ -65,7 +72,8 @@ class Program
         Console.WriteLine("4. Save Finance History");
         Console.WriteLine("5. Load Finances");
         Console.WriteLine("0. Quit");
+        Console.WriteLine();
         Console.WriteLine("What would you like to do?");
-        Console.Write("> ");
+        Console.Write(">>> ");
     }
 }

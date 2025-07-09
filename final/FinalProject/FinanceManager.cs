@@ -70,6 +70,7 @@ class FinanceManager
         Console.WriteLine("4. Gas Purchase");
         Console.WriteLine("5. Eating Out Purchase");
         Console.WriteLine("6. Miscellaneous Purchase");
+        Console.WriteLine();
         Console.Write(">>> ");
 
         string purchaseChoice = Console.ReadLine();
@@ -79,6 +80,8 @@ class FinanceManager
         {
             case 1: // ProRated Purchase
                 {
+                    Console.Clear();
+
                     //Item
                     Console.WriteLine("What is your ProRated Purchase, or monthly subscription?");
                     Console.Write(">>> ");
@@ -110,6 +113,8 @@ class FinanceManager
 
             case 2: // Groceries Purchase
                 {
+                    Console.Clear();
+
                     //Item
                     Console.WriteLine("What grocery or food item did you purchase?");
                     Console.Write(">>> ");
@@ -133,7 +138,7 @@ class FinanceManager
                     string date = Console.ReadLine();
 
                     //Necessity
-                    Console.WriteLine("Was this purchase necessary or was it a splurge? (Yes/No)");
+                    Console.WriteLine("Was this purchase necessary? (Yes/No)");
                     string necessity = Console.ReadLine();
                     int necessityInt = 0;
                     if (necessity == "Yes" || necessity == "yes")
@@ -153,6 +158,8 @@ class FinanceManager
 
             case 3: // Home Goods Purchase
                 {
+                    Console.Clear();
+
                     //Item
                     Console.WriteLine("What home goods item did you purchase?");
                     Console.Write(">>> ");
@@ -165,7 +172,7 @@ class FinanceManager
                     float costFloat = float.Parse(cost);
 
                     //One time purchase
-                    Console.WriteLine("Is this a one time purchase? (Yes/No)");
+                    Console.WriteLine("Is this an item that you will buy again in the future? (Yes/No)");
                     Console.Write(">>> ");
                     string oneTime = Console.ReadLine();
                     int oneTimeInt = 0;
@@ -173,7 +180,7 @@ class FinanceManager
                     else { oneTimeInt = 2; }
 
                     int amountInt = 0;
-                    if (oneTimeInt == 1)
+                    if (oneTimeInt == 2)
                     {
                         amountInt = 1;
                     }
@@ -193,13 +200,15 @@ class FinanceManager
                     string date = Console.ReadLine();
 
                     //Making Object and Calling Constructor
-                    HomeGoodsPurchase homeGoods = new HomeGoodsPurchase(item, costFloat, amountInt, date, oneTimeInt);
+                    HomeGoodsPurchase homeGoods = new HomeGoodsPurchase(item, costFloat, amountInt, date, oneTime);
                     _homeGoods.Add(homeGoods);
                     break;
                 }
 
             case 4: // Gas Purchase
                 {
+                    Console.Clear();
+
                     //Item
                     string item = "Gas";
 
@@ -236,6 +245,8 @@ class FinanceManager
 
             case 5: // Eating Out Purchase
                 {
+                    Console.Clear();
+
                     //Item
                     Console.WriteLine("What order/food did you purchase?");
                     Console.Write(">>> ");
@@ -285,6 +296,8 @@ class FinanceManager
 
             case 6: // Miscellaneous Purchase
                 {
+                    Console.Clear();
+
                     //Item
                     Console.WriteLine("What grocery or food item did you purchase?");
                     Console.Write(">>> ");
@@ -340,7 +353,56 @@ class FinanceManager
     /// </summary>
     public void DisplayFinances()
     {
+        Console.Clear();
+        Console.WriteLine("Do you want:");
+        Console.WriteLine("1. All Transaction History");
+        Console.WriteLine("2. Quick financial display");
+        Console.Write(">>> ");
+        string dis = Console.ReadLine();
+        int disInt = int.Parse(dis);
 
+        Console.Clear();
+        if (disInt == 1) //All transaction History
+        {
+            foreach (ProRatedPurchase pro in _proRated)
+            {
+                pro.Display();
+            }
+
+            foreach (GroceriesPurchase gro in _groceries)
+            {
+                gro.Display();
+            }
+
+            foreach (HomeGoodsPurchase home in _homeGoods)
+            {
+                home.Display();
+            }
+
+            foreach (GasPurchase gas in _gas)
+            {
+                gas.Display();
+            }
+
+            foreach (EatingOutPurchase eat in _eatingOut)
+            {
+                eat.Display();
+            }
+
+            foreach (MiscellaneousPurchase mis in _miscellaneous)
+            {
+                mis.Display();
+            }
+
+            Console.WriteLine();
+            Console.Write("Press Enter to Continue...");
+            Console.ReadLine();
+        }
+
+        else //Display nice financial graphs
+        {
+
+        }
     }
 
 
@@ -400,6 +462,7 @@ class FinanceManager
     /// </summary>
     public void SetFinancialGoal()
     {
+        Console.Clear();
         Console.WriteLine("What budget would you like to set?");
         Console.WriteLine();
         Console.WriteLine("1. Total Budget");
