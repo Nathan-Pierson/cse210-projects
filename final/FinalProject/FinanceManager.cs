@@ -299,7 +299,7 @@ class FinanceManager
                     Console.Clear();
 
                     //Item
-                    Console.WriteLine("What grocery or food item did you purchase?");
+                    Console.WriteLine("What item did you purchase?");
                     Console.Write(">>> ");
                     string item = Console.ReadLine();
 
@@ -326,7 +326,7 @@ class FinanceManager
                     string date = Console.ReadLine();
 
                     //Necessity
-                    Console.WriteLine("Was this purchase necessary or was it a splurge? (Yes/No)");
+                    Console.WriteLine("Was this purchase necessary? (Yes/No)");
                     string necessity = Console.ReadLine();
                     int necessityInt = 0;
                     if (necessity == "Yes" || necessity == "yes")
@@ -353,10 +353,11 @@ class FinanceManager
     /// </summary>
     public void DisplayFinances()
     {
+        TotalSpent();
         Console.Clear();
         Console.WriteLine("Do you want:");
         Console.WriteLine("1. All Transaction History");
-        Console.WriteLine("2. Quick financial display");
+        Console.WriteLine("2. Quick Budget Remainder View");
         Console.Write(">>> ");
         string dis = Console.ReadLine();
         int disInt = int.Parse(dis);
@@ -364,31 +365,95 @@ class FinanceManager
         Console.Clear();
         if (disInt == 1) //All transaction History
         {
+            Console.Clear();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+
+            //ProRated Transactions
+            if (_proRated.Count != 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("ProRated Purchases");
+                Console.WriteLine($"Budget: {_proRatedGoal}");
+                Console.WriteLine($"Total Spent: ${_proRatedTotal}");
+                Console.WriteLine($"Amount Remaining: {_proRatedGoal - _proRatedTotal}");
+            }
             foreach (ProRatedPurchase pro in _proRated)
             {
                 pro.Display();
             }
 
+            //Groceries Transactions
+            if (_groceries.Count != 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Groceries Purchases");
+                Console.WriteLine($"Budget: {_groceriesGoal}");
+                Console.WriteLine($"Total Spent: ${_groceriesTotal}");
+                Console.WriteLine($"Amount Remaining: {_groceriesGoal - _groceriesTotal}");
+            }
             foreach (GroceriesPurchase gro in _groceries)
             {
                 gro.Display();
             }
 
+            //Home Goods Transactions
+            if (_homeGoods.Count != 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Home Goods Purchases");
+                Console.WriteLine($"Budget: {_homeGoodsGoal}");
+                Console.WriteLine($"Total Spent: ${_homeGoodsTotal}");
+                Console.WriteLine($"Amount Remaining: {_homeGoodsGoal - _homeGoodsTotal}");
+            }
             foreach (HomeGoodsPurchase home in _homeGoods)
             {
                 home.Display();
             }
 
+            //Gas Transactions
+            if (_gas.Count != 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Gas Purchases");
+                Console.WriteLine($"Budget: {_gasGoal}");
+                Console.WriteLine($"Total Spent: ${_gasTotal}");
+                Console.WriteLine($"Amount Remaining: {_gasGoal - _gasTotal}");
+            }
             foreach (GasPurchase gas in _gas)
             {
                 gas.Display();
             }
 
+            //Eating Out Transaction
+            if (_eatingOut.Count != 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Eating Out Purchases");
+                Console.WriteLine($"Budget: {_eatingOutGoal}");
+                Console.WriteLine($"Total Spent: ${_eatingOutTotal}");
+                Console.WriteLine($"Amount Remaining: {_eatingOutGoal - _eatingOutTotal}");
+            }
             foreach (EatingOutPurchase eat in _eatingOut)
             {
                 eat.Display();
             }
 
+            //Miscellaneous Transactions
+            if (_miscellaneous.Count != 0)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Miscellaneous Purchases");
+                Console.WriteLine($"Budget: {_miscellaneousGoal}");
+                Console.WriteLine($"Total Spent: ${_miscellaneousTotal}");
+                Console.WriteLine($"Amount Remaining: {_miscellaneousGoal - _miscellaneousTotal}");
+            }
             foreach (MiscellaneousPurchase mis in _miscellaneous)
             {
                 mis.Display();
@@ -399,9 +464,66 @@ class FinanceManager
             Console.ReadLine();
         }
 
-        else //Display nice financial graphs
+        else //Displays the budget remaining
         {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
 
+            Console.WriteLine();
+            Console.WriteLine("ProRated Purchases");
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.WriteLine($"Budget: {_proRatedGoal}");
+            Console.WriteLine($"Total Spent: ${_proRatedTotal}");
+            Console.WriteLine($"Amount Remaining: {_proRatedGoal - _proRatedTotal}");
+            Console.WriteLine("------------------------------------------");
+
+            Console.WriteLine();
+            Console.WriteLine("Groceries Purchases");
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.WriteLine($"Budget: {_groceriesGoal}");
+            Console.WriteLine($"Total Spent: ${_groceriesTotal}");
+            Console.WriteLine($"Amount Remaining: {_groceriesGoal - _groceriesTotal}");
+            Console.WriteLine("------------------------------------------");
+
+            Console.WriteLine();
+            Console.WriteLine("Home Goods Purchases");
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.WriteLine($"Budget: {_homeGoodsGoal}");
+            Console.WriteLine($"Total Spent: ${_homeGoodsTotal}");
+            Console.WriteLine($"Amount Remaining: {_homeGoodsGoal - _homeGoodsTotal}");
+            Console.WriteLine("------------------------------------------");
+
+            Console.WriteLine();
+            Console.WriteLine("Gas Purchases");
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.WriteLine($"Budget: {_gasGoal}");
+            Console.WriteLine($"Total Spent: ${_gasTotal}");
+            Console.WriteLine($"Amount Remaining: {_gasGoal - _gasTotal}");
+            Console.WriteLine("------------------------------------------");
+
+            Console.WriteLine();
+            Console.WriteLine("Eating Out Purchases");
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.WriteLine($"Budget: {_eatingOutGoal}");
+            Console.WriteLine($"Total Spent: ${_eatingOutTotal}");
+            Console.WriteLine($"Amount Remaining: {_eatingOutGoal - _eatingOutTotal}");
+            Console.WriteLine("------------------------------------------");
+
+            Console.WriteLine();
+            Console.WriteLine("Miscellaneous Purchases");
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~");
+            Console.WriteLine($"Budget: {_miscellaneousGoal}");
+            Console.WriteLine($"Total Spent: ${_miscellaneousTotal}");
+            Console.WriteLine($"Amount Remaining: {_miscellaneousGoal - _miscellaneousTotal}");
+            Console.WriteLine("------------------------------------------");
+
+            Console.WriteLine();
+            Console.Write("Press Enter to Continue...");
+            Console.ReadLine();
         }
     }
 
@@ -412,6 +534,13 @@ class FinanceManager
     /// </summary>
     public void TotalSpent()
     {
+        _proRatedTotal = 0;
+        _groceriesTotal = 0;
+        _homeGoodsTotal = 0;
+        _eatingOutTotal = 0;
+        _gasTotal = 0;
+        _miscellaneousTotal = 0;
+
         foreach (ProRatedPurchase pro in _proRated)
         {
             float money = pro.GetCost() * pro.GetAmount();
@@ -445,14 +574,14 @@ class FinanceManager
             float money = eat.GetCost() * eat.GetAmount();
             _totalCost += money;
             _eatingOutTotal += money;
-        } 
+        }
 
         foreach (MiscellaneousPurchase mis in _miscellaneous)
         {
             float money = mis.GetCost() * mis.GetAmount();
             _totalCost += money;
             _miscellaneousTotal += money;
-        }                           
+        }
     }
 
 
@@ -559,7 +688,79 @@ class FinanceManager
     /// </summary>
     public void SaveFinances()
     {
+        Console.WriteLine("What do you want to name the file?");
+        Console.Write(">>> ");
+        string fileName = Console.ReadLine();
 
+    if (!fileName.EndsWith(".txt"))
+    {
+        fileName += ".txt";
+    }
+
+    try
+    {
+        using (StreamWriter writer = new StreamWriter(fileName))
+        {
+            // Save goals first
+            writer.WriteLine("GOALS");
+            writer.WriteLine($"{_totalGoal}|{_proRatedGoal}|{_homeGoodsGoal}|{_groceriesGoal}|{_gasGoal}|{_eatingOutGoal}|{_miscellaneousGoal}");
+            
+            // Save ProRated purchases
+            writer.WriteLine("PRORATED");
+            foreach (ProRatedPurchase purchase in _proRated)
+            {
+                writer.WriteLine($"{purchase.GetItem()}|{purchase.GetCost()}|{purchase.GetAmount()}|{purchase.GetDate()}|{purchase.GetTimesPerYear()}");
+            }
+            
+            // Save Groceries purchases
+            writer.WriteLine("GROCERIES");
+            foreach (GroceriesPurchase purchase in _groceries)
+            {
+                writer.WriteLine($"{purchase.GetItem()}|{purchase.GetCost()}|{purchase.GetAmount()}|{purchase.GetDate()}|{purchase.GetNecessity()}");
+            }
+            
+            // Save Home Goods purchases
+            writer.WriteLine("HOMEGOODS");
+            foreach (HomeGoodsPurchase purchase in _homeGoods)
+            {
+                writer.WriteLine($"{purchase.GetItem()}|{purchase.GetCost()}|{purchase.GetAmount()}|{purchase.GetDate()}|{purchase.GetOneTimePurchase()}");
+            }
+            
+            // Save Gas purchases
+            writer.WriteLine("GAS");
+            foreach (GasPurchase purchase in _gas)
+            {
+                writer.WriteLine($"{purchase.GetItem()}|{purchase.GetCost()}|{purchase.GetAmount()}|{purchase.GetDate()}|{purchase.GetGallons()}|{purchase.GetStation()}");
+            }
+            
+            // Save Eating Out purchases
+            writer.WriteLine("EATINGOUT");
+            foreach (EatingOutPurchase purchase in _eatingOut)
+            {
+                writer.WriteLine($"{purchase.GetItem()}|{purchase.GetCost()}|{purchase.GetAmount()}|{purchase.GetDate()}|{purchase.GetEstablishment()}|{purchase.GetIsDate()}");
+            }
+            
+            // Save Miscellaneous purchases
+            writer.WriteLine("MISCELLANEOUS");
+            foreach (MiscellaneousPurchase purchase in _miscellaneous)
+            {
+                writer.WriteLine($"{purchase.GetItem()}|{purchase.GetCost()}|{purchase.GetAmount()}|{purchase.GetDate()}|{purchase.GetDescription()}|{purchase.GetNecessity()}");
+            }
+            
+            writer.WriteLine("END");
+        }
+        
+        Console.WriteLine($"Finances saved successfully to {fileName}!");
+        Console.Write("Press Enter to Continue...");
+        Console.ReadLine();
+    }
+    
+    catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving file: {ex.Message}");
+            Console.Write("Press Enter to Continue...");
+            Console.ReadLine();
+        }
     }
 
 
@@ -569,6 +770,100 @@ class FinanceManager
     /// </summary>
     public void LoadFinances()
     {
+    Console.WriteLine("What is the name of the file you want to load?");
+    Console.Write(">>> ");
+    string fileName = Console.ReadLine();
+    
+    if (!fileName.EndsWith(".txt"))
+        fileName += ".txt";
 
+    if (!File.Exists(fileName))
+    {
+        Console.WriteLine($"File {fileName} does not exist!");
+        Console.Write("Press Enter to Continue...");
+        Console.ReadLine();
+        return;
+    }
+
+    try
+    {
+        // Clear existing data
+        _proRated.Clear();
+        _groceries.Clear();
+        _homeGoods.Clear();
+        _gas.Clear();
+        _eatingOut.Clear();
+        _miscellaneous.Clear();
+
+        string[] lines = File.ReadAllLines(fileName);
+        string currentSection = "";
+        
+        foreach (string line in lines)
+        {
+            if (line == "GOALS" || line == "PRORATED" || line == "GROCERIES" || 
+                line == "HOMEGOODS" || line == "GAS" || line == "EATINGOUT" || 
+                line == "MISCELLANEOUS" || line == "END")
+            {
+                currentSection = line;
+                continue;
+            }
+            
+            if (string.IsNullOrEmpty(line)) continue;
+            
+            string[] parts = line.Split('|');
+            
+            if (currentSection == "GOALS" && parts.Length >= 7)
+            {
+                _totalGoal = float.Parse(parts[0]);
+                _proRatedGoal = float.Parse(parts[1]);
+                _homeGoodsGoal = float.Parse(parts[2]);
+                _groceriesGoal = float.Parse(parts[3]);
+                _gasGoal = float.Parse(parts[4]);
+                _eatingOutGoal = float.Parse(parts[5]);
+                _miscellaneousGoal = float.Parse(parts[6]);
+            }
+            else if (currentSection == "PRORATED" && parts.Length >= 5)
+            {
+                _proRated.Add(new ProRatedPurchase(parts[0], float.Parse(parts[1]), 
+                    int.Parse(parts[2]), parts[3], int.Parse(parts[4])));
+            }
+            else if (currentSection == "GROCERIES" && parts.Length >= 5)
+            {
+                _groceries.Add(new GroceriesPurchase(parts[0], float.Parse(parts[1]), 
+                    int.Parse(parts[2]), parts[3], int.Parse(parts[4])));
+            }
+            else if (currentSection == "HOMEGOODS" && parts.Length >= 5)
+            {
+                _homeGoods.Add(new HomeGoodsPurchase(parts[0], float.Parse(parts[1]), 
+                    int.Parse(parts[2]), parts[3], parts[4]));
+            }
+            else if (currentSection == "GAS" && parts.Length >= 6)
+            {
+                _gas.Add(new GasPurchase(parts[0], float.Parse(parts[1]), 
+                    int.Parse(parts[2]), parts[3], float.Parse(parts[4]), parts[5]));
+            }
+            else if (currentSection == "EATINGOUT" && parts.Length >= 6)
+            {
+                _eatingOut.Add(new EatingOutPurchase(parts[0], float.Parse(parts[1]), 
+                    int.Parse(parts[2]), parts[3], parts[4], int.Parse(parts[5])));
+            }
+            else if (currentSection == "MISCELLANEOUS" && parts.Length >= 6)
+            {
+                _miscellaneous.Add(new MiscellaneousPurchase(parts[0], float.Parse(parts[1]), 
+                    int.Parse(parts[2]), parts[3], parts[4], int.Parse(parts[5])));
+            }
+        }
+        
+        TotalSpent();
+        Console.WriteLine($"Finances loaded successfully from {fileName}!");
+        Console.Write("Press Enter to Continue...");
+        Console.ReadLine();
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error loading file: {ex.Message}");
+        Console.Write("Press Enter to Continue...");
+        Console.ReadLine();
+    }
     }
 }

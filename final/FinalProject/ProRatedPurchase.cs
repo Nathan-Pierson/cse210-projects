@@ -15,7 +15,6 @@ class ProRatedPurchase : Purchase
 
     public override void Display()
     {
-        Console.WriteLine();
         Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         Console.WriteLine($"Date: {GetDate()}");
         Console.WriteLine($"Item: {GetItem()}");

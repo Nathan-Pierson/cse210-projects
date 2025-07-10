@@ -1,0 +1,16 @@
+GOALS
+0|0|300|0|0|0|0
+PRORATED
+netflix|13.99|1|12/22/22|12
+GROCERIES
+eggs|1.25|2|4/55/33|1
+milk|3.45|1|12/22/25|1
+HOMEGOODS
+pan|20.99|1|12/22/25|no
+GAS
+Gas|23.22|1|12/22/25|12.2|mavrick
+EATINGOUT
+burito|5.99|2|12/22/25|mcdonalds|2
+MISCELLANEOUS
+shoes|25.55|1|12/22/25|i neeeded new shoes|1
+END
